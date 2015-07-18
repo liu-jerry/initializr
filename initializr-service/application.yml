@@ -10,7 +10,20 @@ endpoints:
     keysToSanitize: key,secret,password,VCAP_SERVICES
 
 initializr:
+  groupId:
+    value: com.sankuai.meituan.waimai
+  artifactId:
+    value: demo
+  version:
+    value: 0.0.1-SNAPSHOT
+  name:
+    value: Demo
+  description:
+    value: Demo project for Spring Boot
+  packageName:
+    value: com.sankuai.meituan.waimai.demo
   env:
+    artifactRepository: https://repo.spring.io/lib-release
     boms:
       vaadin-bom:
         groupId: com.vaadin
@@ -26,88 +39,36 @@ initializr:
             version: Brixton.BUILD-SNAPSHOT
             repositories: spring-snapshots,spring-milestones
   dependencies:
-    - name: Core
+    - name: 项目模板
       content:
-        - name: Security
-          id: security
-          description: Support for spring-security
-        - name: AOP
-          id: aop
-          description: Support for aspect-oriented programming including spring-aop and AspectJ
-        - name: Atomikos (JTA)
-          id: jta-atomikos
-          description: Support for JTA distributed transactions via Atomikos
-          versionRange: 1.2.0.M1
-        - name: Bitronix (JTA)
-          id: jta-bitronix
-          description: Support for JTA distributed transactions via Bitronix
-          versionRange: 1.2.0.M1
-        - name: Cache
-          id: cache
-          description: Support for Spring's Cache abstraction
-          versionRange: 1.3.0.M1
-        - name: DevTools
-          id: devtools
+        - name: 服务化Server基础模板
+          id: rpc-server
+          description: 提供一个基础的服务化模板支持
           groupId: org.springframework.boot
-          artifactId: spring-boot-devtools
-          description: Support for Spring Boot Development Tools.
-          versionRange: 1.3.0.M1
-    - name: Web
-      content:
-        - name: Web
+          artifactId: spring-boot-starter
+        - name: 服务化Client基础模板
+          id: rpc-client
+          description: 提供一个基础的服务化模板支持
+        - name: Web基础模板
           id: web
           description: Support for full-stack web development, including Tomcat and spring-webmvc
           facets:
             - web
-        - name: Websocket
-          id: websocket
-          description: Support for websocket development with Tomcat
-        - name: WS
-          id: ws
-          description: Support for Spring Web Services
-        - name: Jersey (JAX-RS)
-          id: jersey
-          description: Support for the Jersey RESTful Web Services framework
-          versionRange: 1.2.0.RELEASE
-        - name: Vaadin
-          id: vaadin
+    - name: 基础组件
+      content:
+        - name: Log4j2
+          id: log4j2
+          description: 提供log4j2支持
+        - name: Thrift
+          id: thrift
+          description: 提供thrift支持
           facets:
-            - web
-          groupId: com.vaadin
-          artifactId: vaadin-spring-boot-starter
-          version: 1.0.0.beta3
-          description: Support for Vaadin
-          bom: vaadin-bom
-        - name: Rest Repositories
-          id: data-rest
-          description: Support for exposing Spring Data repositories over REST via spring-data-rest-webmvc
-        - name: HATEOAS
-          id: hateoas
-          description: Support for HATEOAS-based RESTful services
-          versionRange: 1.2.2.RELEASE
-        - name: Mobile
-          id: mobile
-          description: Support for spring-mobile
-    - name: Template Engines
+            - thrift
+    - name: Web模板引擎
       content:
         - name: Freemarker
           id: freemarker
           description: Support for the FreeMarker templating engine
-          facets:
-            - web
-        - name: Velocity
-          id: velocity
-          description: Support for the Velocity templating engine
-          facets:
-            - web
-        - name: Groovy Templates
-          id: groovy-templates
-          description: Support for the Groovy templating engine
-          facets:
-            - web
-        - name: Thymeleaf
-          id: thymeleaf
-          description: Support for the Thymeleaf templating engine, including integration with Spring
           facets:
             - web
         - name: Mustache
@@ -116,7 +77,15 @@ initializr:
           versionRange: 1.2.2.RELEASE
           facets:
             - web
-    - name: Data
+        - name: Websocket
+          id: websocket
+          description: Support for websocket development with Tomcat
+    - name: 工具依赖
+      content:
+        - name: Guava
+          id: guava
+          description: Support for Guava
+    - name: 第三方依赖
       content:
         - name: JDBC
           id: jdbc
@@ -132,113 +101,6 @@ initializr:
         - name: Redis
           id: redis
           description: Support for the REDIS key-value data store, including spring-redis
-        - name: Gemfire
-          id: data-gemfire
-          description: Support for the GemFire distributed data store including spring-data-gemfire
-        - name: Solr
-          id: data-solr
-          description: Support for the Apache Solr search platform, including spring-data-solr
-        - name: Elasticsearch
-          id: data-elasticsearch
-          description: Support for the Elasticsearch search and analytics engine including spring-data-elasticsearch
-    - name: Cloud
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Cloud Connectors
-          id: cloud-connectors
-          description: Simplifies connecting to services in cloud platforms
-          versionRange: 1.2.0.RELEASE
-        - name: Cloud Bootstrap
-          id: cloud-starter
-          description: Support for spring-cloud-context (e.g. Bootstrap context and @RefreshScope)
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter
-        - name: Config Client
-          id: cloud-config
-          description: Support for spring-cloud-config Client
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-config
-        - name: Config Server
-          id: cloud-server
-          description: Support for spring-cloud-config Server
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-config-server
-        - name: Eureka
-          id: cloud-eureka
-          description: Support for spring-cloud-netflix Eureka
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-eureka
-        - name: Eureka Server
-          id: cloud-eureka-server
-          description: Support for spring-cloud-netflix Eureka Server
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-eureka-server
-        - name: AWS
-          id: cloud-aws
-          description: Support for spring-cloud-aws
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws
-        - name: Feign
-          id: cloud-feign
-          description: Support for spring-cloud-netflix Feign
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-feign
-        - name: Hystrix
-          id: cloud-hystrix
-          description: Support for spring-cloud-netflix Hystrix
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-hystrix
-        - name: Hystrix Dashboard
-          id: cloud-hystrix-dashboard
-          description: Support for spring-cloud-netflix Hystrix Dashboard
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-hystrix-dashboard
-        - name: OAuth2
-          id: cloud-oauth2
-          description: Support for spring-cloud-security OAuth2
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-oauth2
-        - name: Ribbon
-          id: cloud-ribbon
-          description: Support for spring-cloud-netflix Ribbon
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-ribbon
-        - name: Turbine
-          id: cloud-turbine
-          description: Support for spring-cloud-netflix Turbine
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-turbine
-        - name: Turbine AMQP
-          id: cloud-turbine-amqp
-          description: Support for spring-cloud-netflix Turbine AMQP
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-turbine-amqp
-        - name: Zuul
-          id: cloud-zuul
-          description: Support for spring-cloud-netflix Zuul
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-zuul
-        - name: AWS JDBC
-          id: cloud-aws-jdbc
-          description: Support for spring-cloud-aws-jdbc
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws-jdbc
-        - name: AWS Messaging
-          id: cloud-aws-messaging
-          description: Support for spring-cloud-aws-messaging
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws-messaging
-        - name: Cloud Bus AMQP
-          id: cloud-bus-amqp
-          description: Support for spring-cloud-bus-amqp
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-bus-amqp
-        - name: Cloud Security
-          id: cloud-security
-          description: Support for spring-cloud-security
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-security
     - name: Database
       content:
         - name: H2
@@ -253,63 +115,17 @@ initializr:
           groupId: org.hsqldb
           artifactId: hsqldb
           scope: runtime
-        - name: Apache Derby
-          id: derby
-          description: Support for the Apache Derby database (with embedded support)
-          groupId: org.apache.derby
-          artifactId: derby
-          scope: runtime
-          versionRange: 1.2.2.RELEASE
         - name: MySQL
           id: mysql
           description: Support for the MySQL jdbc driver
           groupId: mysql
           artifactId: mysql-connector-java
           scope: runtime
-        - name: PostgreSQL
-          id: postgresql
-          description: Support for the PostgreSQL jdbc driver
-          groupId: org.postgresql
-          artifactId: postgresql
-          version: 9.4-1201-jdbc41
-          scope: runtime
-    - name: Social
-      content:
-        - name: Facebook
-          id: social-facebook
-          description: Support for spring-social-facebook
-        - name: LinkedIn
-          id: social-linkedin
-          description: Support for spring-social-linkedin
-        - name: Twitter
-          id: social-twitter
-          description: Support for spring-social-twitter
     - name: I/O
       content:
-        - name: Batch
-          id: batch
-          description: Support for Spring Batch including HSQLDB database
-        - name: Integration
-          id: integration
-          description: Support for common spring-integration modules
-        - name: JMS
-          id: hornetq
-          description: Support for Java Message Service API via HornetQ
         - name: AMQP
           id: amqp
           description: Support for the Advanced Message Queuing Protocol via spring-rabbit
-        - name: Mail
-          id: mail
-          description: Support for javax.mail
-          versionRange: 1.2.0.RC1
-    - name: Ops
-      content:
-        - name: Actuator
-          id: actuator
-          description: Production ready features to help you monitor and manage your application
-        - name: Remote Shell
-          id: remote-shell
-          description: Support for CRaSH
   types:
     - name: Maven POM
       id: maven-build
@@ -358,9 +174,9 @@ initializr:
     - id: 1.6
       default: false
     - id: 1.7
-      default: false
-    - id: 1.8
       default: true
+    - id: 1.8
+      default: false
   languages:
     - name: Groovy
       id: groovy
@@ -378,4 +194,3 @@ initializr:
     - name: 1.1.12
       id: 1.1.12.RELEASE
       default: false
-
