@@ -126,6 +126,13 @@ class ProjectGenerator {
 			new File(dir, 'src/main/resources/templates').mkdirs()
 			new File(dir, 'src/main/resources/static').mkdirs()
 		}
+
+		// TODO 扩展支持thrift
+		if (request.hasFacet("thrift")) {
+			new File(dir, 'src/main/thrift').mkdirs()
+			new File(dir, 'src/test/thrift').mkdirs()
+		}
+
 		invokeListeners(request)
 		rootDir
 
