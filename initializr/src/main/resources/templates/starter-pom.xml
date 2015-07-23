@@ -81,7 +81,31 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin><% if (language=='groovy') { %>
+			</plugin><% if (facets.contains("thrift")) { %>
+			<plugin>
+				<groupId>org.apache.thrift.tools</groupId>
+				<artifactId>maven-thrift-plugin</artifactId>
+				<version>0.1.11</version>
+				<executions>
+					<execution>
+						<id>thrift-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>thrift-test-sources</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<generator>java:beans,hashcode</generator>
+				</configuration>
+			</plugin><% } %><% if (language=='groovy') { %>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
