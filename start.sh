@@ -8,6 +8,9 @@ BASE_DIR=$(pwd)
 cd $BASE_DIR/initializr && mvn install -DskipTests=true
 cd $BASE_DIR/initializr-service && spring jar start.jar app.groovy
 
+
+cd $BASE_DIR
+
 CONTAINER=start
 
 RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
