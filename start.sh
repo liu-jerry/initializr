@@ -5,7 +5,7 @@
 BASE_DIR=$(dirname $0)
 
 # 编译
-cd $BASE_DIR/initializr && mvn install 
+cd $BASE_DIR/initializr && mvn install -DskipTests=true
 cd $BASE_DIR/initializr-service && spring jar start.jar app.groovy
 
 # 停掉老版本
