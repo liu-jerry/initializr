@@ -2,7 +2,7 @@
 # 编译部署脚本
 
 # 获取当前目录
-BASE_DIR=$(dirname $0)
+BASE_DIR=$(pwd)
 
 # 编译
 cd $BASE_DIR/initializr && mvn install -DskipTests=true
