@@ -20,7 +20,7 @@ else
 fi
 
 # 构建image
-docker -H 172.27.2.136:3376 build -t initializr initializr
+docker -H 172.27.2.136:3376 build -t initializr .
 
 # 运行
 docker -H 172.27.2.136:3376 run -d --name start -p 8088:8080 initializr

@@ -1,5 +1,5 @@
 FROM java:openjdk-8-jdk
 
-COPY start.jar /
+COPY initializr-service/start.jar /
 
 CMD java -jar start.jar
