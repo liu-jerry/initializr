@@ -15,6 +15,34 @@
 		<java.version>1.7</java.version>
 	</properties>
 
+	<!-- 该仓库已经停止服务-->
+	<repositories>
+		<repository>
+			<id>codehaus.org</id>
+			<url>http://repository.codehaus.org</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- 该仓库已经停止服务-->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus.org</id>
+			<url>http://repository.codehaus.org</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
