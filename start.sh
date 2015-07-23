@@ -8,8 +8,16 @@ BASE_DIR=$(pwd)
 cd $BASE_DIR/initializr && mvn install -DskipTests=true
 cd $BASE_DIR/initializr-service && spring jar start.jar app.groovy
 
+CONTAINER=start
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
+
 # 停掉老版本
-docker -H 172.27.2.136:3376 rm -f start
+if [ $? -eq 1 ]; then
+  echo "UNKNOWN - $CONTAINER does not exist."
+else
+  docker -H 172.27.2.136:3376 rm -f start
+fi
 
 # 构建image
 docker -H 172.27.2.136:3376 build -t initializr initializr
